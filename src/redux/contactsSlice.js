@@ -50,10 +50,12 @@ export const contactsReducer = createReducer(initialState, builder =>
 
 // export const accountReducer = (state = initialState, action) => {
 //   switch (action.type) {
+
 //     case 'account/addContact':
 //       return {
 //         contacts: [...state.account.contacts, action.payload],
 //       };
+
 //     case 'account/deleteContact':
 //       return {
 //         contacts: action.payload,
