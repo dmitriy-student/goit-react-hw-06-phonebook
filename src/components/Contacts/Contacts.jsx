@@ -1,16 +1,25 @@
+import { useDispatch, useSelector } from 'react-redux';
 import css from './Contacts.module.css';
-import PropTypes from 'prop-types';
+import { deleteContact } from 'redux/contactsSlice';
 
-export const Contacts = ({ contacts, onClick }) => {
+export default function Contacts() {
+  const contacts = useSelector(state => state.contacts.data);
+  const filter = useSelector(state => state.contacts.filter);
+  const dispatch = useDispatch();
+
+  const filtredNumbers = contacts.filter(({ name }) =>
+    name.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <ul className={css.contacts_list}>
-      {contacts.map(({ id, name, number }) => (
+      {filtredNumbers.map(({ id, name, number }) => (
         <li className={css.contacts_item} key={id}>
           {name}: {number}
           <button
             className={css.contacts_btn}
             onClick={() => {
-              onClick(id);
+              dispatch(deleteContact(id));
             }}
           >
             Delete
@@ -19,15 +28,4 @@ export const Contacts = ({ contacts, onClick }) => {
       ))}
     </ul>
   );
-};
-
-Contacts.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-  onClick: PropTypes.func.isRequired,
-};
+}
