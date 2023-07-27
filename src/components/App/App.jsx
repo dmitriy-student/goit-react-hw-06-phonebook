@@ -15,7 +15,7 @@ export default function App(params) {
         <FormPhonebook></FormPhonebook>
       </Section>
       <Section title="Contacts">
-        {contacts.length > 1 && <Filter />}
+        <Filter />
         {contacts.length > 0 ? (
           <Contacts />
         ) : (

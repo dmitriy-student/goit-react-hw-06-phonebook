@@ -19,22 +19,12 @@ export const changeFilter = createAction('contacts/changeFilter');
 export const contactsReducer = createReducer(initialState, builder =>
   builder
     .addCase(addContact, (state, action) => {
-      // localStorage.setItem(
-      //   'contacts',
-      //   JSON.stringify([...state.data, action.payload])
-      // );
       return {
         ...state,
         data: [...state.data, action.payload],
       };
     })
     .addCase(deleteContact, (state, action) => {
-      // localStorage.setItem(
-      //   'contacts',
-      //   JSON.stringify(
-      //     state.data.filter(contact => contact.id !== action.payload)
-      //   )
-      // );
       return {
         ...state,
         data: state.data.filter(contact => contact.id !== action.payload),
@@ -47,20 +37,3 @@ export const contactsReducer = createReducer(initialState, builder =>
       };
     })
 );
-
-// export const accountReducer = (state = initialState, action) => {
-//   switch (action.type) {
-
-//     case 'account/addContact':
-//       return {
-//         contacts: [...state.account.contacts, action.payload],
-//       };
-
-//     case 'account/deleteContact':
-//       return {
-//         contacts: action.payload,
-//       };
-//     default:
-//       return state;
-//   }
-// };

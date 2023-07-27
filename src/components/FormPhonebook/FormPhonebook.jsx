@@ -3,13 +3,14 @@ import css from './FormPhonebook.module.css';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
+import { selectContacts } from 'redux/selectors';
 
 export default function FormPhonebook({ formSubmit }) {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const contacts = useSelector(state => state.contacts.data);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleInput = e => {
